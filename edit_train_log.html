@@ -28,12 +28,12 @@
 <body>
     <h1>Edit Training Log</h1>
     <p>This section allows you to edit a training log in the Hex Heros IT Management system.</p>
-    <a href="/trainings" button class="btn"><i class="fa fa-close"></i>Back</a>
+    <a href="/trainings" class="btn"><i class="fa fa-close"></i>Back</a>
     <br>
     <br>
     <div class="container">
-        <form action="/edit_train_log/{{ training_details.training_id }}" method="POST">
-            <input type="hidden" id="training_id" name="training_id" value="{{ training_details.training_id }}"><br>
+        <form action="/edit_train_log/{{ training_details.training_details_id }}" method="POST">
+            <input type="hidden" id="training_details_id" name="training_details_id" value="{{ training_details.training_details_id }}"><br>
             <div class="form-group">
                 <label for="employee_id">Employee:</label>
                 <select id="employee_id" name="employee_id" required>
@@ -45,7 +45,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="training_id">Training:</label>
+                <label for="training_id">Training Title:</label>
                 <select id="training_id" name="training_id" required>
                     {% for training in trainings %}
                     <option value="{{ training.training_id }}" {% if training.training_id == training_details.training_id %}selected{% endif %}>
