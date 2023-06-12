@@ -33,20 +33,25 @@
     <br>
     <div class="container">
         <form action="/edit_train_log" method="POST">
-            <input type="hidden" id="training_id" name="training_id" value="{{ training_details[0].training_id }}"><br>
+            <input type="hidden" id="training_id" name="training_id" value="{{ training_details.training_id }}"><br>
             <div class="form-group">
                 <label for="employee_id">Employee:</label>
                 <select id="employee_id" name="employee_id" required>
-                    <option value="{{ training_details[0].employee_id }}">
-                        {{ training_details.first_name }} {{ training_details.last_name }}
+                    {% for employee in employees %}
+                    <option value="{{ employee.employee_id }}" {% if employee.employee_id == training_details.employee_id %}selected{% endif %}>
+                        {{ employee.first_name }} {{ employee.last_name }}
                     </option>
+                    {% endfor %}
                 </select>
-                    {{ training_details }}
             </div>
             <div class="form-group">
                 <label for="training_id">Training:</label>
                 <select id="training_id" name="training_id" required>
-                    <option value="{{ training_details.training_id }}">{{ training_details.title }}</option>
+                    {% for training in trainings %}
+                    <option value="{{ training.training_id }}" {% if training.training_id == training_details.training_id %}selected{% endif %}>
+                        {{ training.title }}
+                    </option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-group">
